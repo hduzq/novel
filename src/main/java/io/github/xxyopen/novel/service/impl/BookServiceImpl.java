@@ -28,6 +28,7 @@ import io.github.xxyopen.novel.manager.mq.AmqpMsgManager;
 import io.github.xxyopen.novel.service.BookService;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
+import org.springframework.context.annotation.Lazy;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 import org.springframework.util.CollectionUtils;
@@ -46,7 +47,7 @@ import java.util.stream.Collectors;
  * @date 2022/5/14
  */
 @Service
-@RequiredArgsConstructor
+@RequiredArgsConstructor(onConstructor_ = {@Lazy})
 @Slf4j
 public class BookServiceImpl implements BookService {
 

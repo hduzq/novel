@@ -9,6 +9,7 @@ import io.github.xxyopen.novel.manager.cache.AuthorInfoCacheManager;
 import io.github.xxyopen.novel.service.AuthorService;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
+import org.springframework.context.annotation.Lazy;
 import org.springframework.stereotype.Service;
 
 import java.time.LocalDateTime;
@@ -21,7 +22,7 @@ import java.util.Objects;
  * @date 2022/5/23
  */
 @Service
-@RequiredArgsConstructor
+@RequiredArgsConstructor(onConstructor_ = {@Lazy})
 @Slf4j
 public class AuthorServiceImpl implements AuthorService {
 

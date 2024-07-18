@@ -7,6 +7,7 @@ import io.github.xxyopen.novel.dto.UserInfoDto;
 import java.util.Objects;
 import lombok.RequiredArgsConstructor;
 import org.springframework.cache.annotation.Cacheable;
+import org.springframework.context.annotation.Lazy;
 import org.springframework.stereotype.Component;
 
 /**
@@ -16,7 +17,7 @@ import org.springframework.stereotype.Component;
  * @date 2022/5/12
  */
 @Component
-@RequiredArgsConstructor
+@RequiredArgsConstructor(onConstructor_ = {@Lazy})
 public class UserInfoCacheManager {
 
     private final UserInfoMapper userInfoMapper;

@@ -4,6 +4,7 @@ import io.github.xxyopen.novel.core.common.exception.BusinessException;
 import io.github.xxyopen.novel.core.util.JwtUtils;
 import io.github.xxyopen.novel.manager.cache.UserInfoCacheManager;
 import lombok.RequiredArgsConstructor;
+import org.springframework.context.annotation.Lazy;
 import org.springframework.stereotype.Component;
 
 /**
@@ -13,7 +14,7 @@ import org.springframework.stereotype.Component;
  * @date 2022/5/18
  */
 @Component
-@RequiredArgsConstructor
+@RequiredArgsConstructor(onConstructor_ = @Lazy)
 public class FrontAuthStrategy implements AuthStrategy {
 
     private final JwtUtils jwtUtils;

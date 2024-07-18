@@ -7,6 +7,7 @@ import io.github.xxyopen.novel.manager.cache.FriendLinkCacheManager;
 import io.github.xxyopen.novel.manager.cache.HomeBookCacheManager;
 import io.github.xxyopen.novel.service.HomeService;
 import lombok.RequiredArgsConstructor;
+import org.springframework.context.annotation.Lazy;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
@@ -18,7 +19,7 @@ import java.util.List;
  * @date 2022/5/13
  */
 @Service
-@RequiredArgsConstructor
+@RequiredArgsConstructor(onConstructor_ = {@Lazy})
 public class HomeServiceImpl implements HomeService {
 
     private final HomeBookCacheManager homeBookCacheManager;

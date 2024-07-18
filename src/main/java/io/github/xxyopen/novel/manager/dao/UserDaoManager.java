@@ -6,6 +6,7 @@ import io.github.xxyopen.novel.dao.entity.UserInfo;
 import io.github.xxyopen.novel.dao.mapper.UserInfoMapper;
 import java.util.List;
 import lombok.RequiredArgsConstructor;
+import org.springframework.context.annotation.Lazy;
 import org.springframework.stereotype.Component;
 
 /**
@@ -15,7 +16,7 @@ import org.springframework.stereotype.Component;
  * @date 2022/5/20
  */
 @Component
-@RequiredArgsConstructor
+@RequiredArgsConstructor(onConstructor_ = {@Lazy})
 public class UserDaoManager {
 
     private final UserInfoMapper userInfoMapper;

@@ -12,6 +12,7 @@ import io.github.xxyopen.novel.manager.cache.NewsCacheManager;
 import io.github.xxyopen.novel.service.NewsService;
 import java.util.List;
 import lombok.RequiredArgsConstructor;
+import org.springframework.context.annotation.Lazy;
 import org.springframework.stereotype.Service;
 
 /**
@@ -21,7 +22,7 @@ import org.springframework.stereotype.Service;
  * @date 2022/5/14
  */
 @Service
-@RequiredArgsConstructor
+@RequiredArgsConstructor(onConstructor_ = {@Lazy})
 public class NewsServiceImpl implements NewsService {
 
     private final NewsCacheManager newsCacheManager;
