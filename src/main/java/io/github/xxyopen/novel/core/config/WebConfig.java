@@ -9,7 +9,8 @@ import io.github.xxyopen.novel.core.interceptor.TokenParseInterceptor;
 import lombok.RequiredArgsConstructor;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.web.servlet.config.annotation.InterceptorRegistry;
-import org.springframework.web.servlet.config.annotation.WebMvcConfigurer;
+import org.springframework.web.servlet.config.annotation.*;
+
 
 /**
  * Spring Web Mvc 相关配置不要加 @EnableWebMvc 注解，否则会导致 jackson 的全局配置失效。因为 @EnableWebMvc 注解会导致
@@ -38,7 +39,7 @@ public class WebConfig implements WebMvcConfigurer {
             .addPathPatterns("/**")
             .order(0);
 
-        // 文件访问拦截
+        // 文件访问拦截 暂时取消这个拦截0905
         registry.addInterceptor(fileInterceptor)
             .addPathPatterns(SystemConfigConsts.IMAGE_UPLOAD_DIRECTORY + "**")
             .order(1);
@@ -62,6 +63,11 @@ public class WebConfig implements WebMvcConfigurer {
             // 拦截小说内容查询接口，需要解析 token 以判断该用户是否有权阅读该章节（付费章节是否已购买）
             .addPathPatterns(ApiRouterConsts.API_FRONT_BOOK_URL_PREFIX + "/content/*")
             .order(3);
+    }
 
+    @Override
+    public void addResourceHandlers(ResourceHandlerRegistry registry) {
+        registry.addResourceHandler("/upload/**")
+                .addResourceLocations("file:/Users/zhangqian/IdeaProjects/novel/upload/");
     }
 }

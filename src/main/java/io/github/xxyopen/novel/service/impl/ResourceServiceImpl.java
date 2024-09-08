@@ -24,7 +24,7 @@ import org.springframework.stereotype.Service;
 import org.springframework.web.multipart.MultipartFile;
 
 /**
- * 资源（图片/视频/文档）相关服务实现类
+ * 资源（图片/视频/文档）相关服务实现类 (重要 0908)
  *
  * @author xiongxiaoyang
  * @date 2022/5/17

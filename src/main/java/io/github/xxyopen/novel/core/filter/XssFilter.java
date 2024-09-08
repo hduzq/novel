@@ -11,9 +11,11 @@ import jakarta.servlet.ServletRequest;
 import jakarta.servlet.ServletResponse;
 import jakarta.servlet.annotation.WebFilter;
 import jakarta.servlet.http.HttpServletRequest;
+
 import java.io.IOException;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
+
 import lombok.RequiredArgsConstructor;
 import org.springframework.boot.autoconfigure.condition.ConditionalOnProperty;
 import org.springframework.boot.context.properties.EnableConfigurationProperties;
@@ -41,14 +43,14 @@ public class XssFilter implements Filter {
 
     @Override
     public void doFilter(ServletRequest servletRequest, ServletResponse servletResponse,
-        FilterChain filterChain) throws IOException, ServletException {
+                         FilterChain filterChain) throws IOException, ServletException {
         HttpServletRequest req = (HttpServletRequest) servletRequest;
         if (handleExcludeUrl(req)) {
             filterChain.doFilter(servletRequest, servletResponse);
             return;
         }
         XssHttpServletRequestWrapper xssRequest = new XssHttpServletRequestWrapper(
-            (HttpServletRequest) servletRequest);
+                (HttpServletRequest) servletRequest);
         filterChain.doFilter(xssRequest, servletResponse);
     }
 
@@ -63,6 +65,10 @@ public class XssFilter implements Filter {
             if (m.find()) {
                 return true;
             }
+
+        }
+        if (url.startsWith("/upload/")) {
+            return true;
         }
         return false;
     }
