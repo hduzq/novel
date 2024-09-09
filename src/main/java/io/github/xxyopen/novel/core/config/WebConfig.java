@@ -67,6 +67,7 @@ public class WebConfig implements WebMvcConfigurer {
 
     @Override
     public void addResourceHandlers(ResourceHandlerRegistry registry) {
+        //在数据库中存放'/upload/***' URL即可
         registry.addResourceHandler("/upload/**")
                 .addResourceLocations("file:/Users/zhangqian/IdeaProjects/novel/upload/");
     }

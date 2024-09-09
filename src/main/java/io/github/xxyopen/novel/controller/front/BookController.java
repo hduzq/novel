@@ -38,6 +38,7 @@ public class BookController {
 
     /**
      * 小说分类列表查询接口
+     * zq: 点击作品频道男频，会出来7个类别；女频会出现1个类别
      */
     @Operation(summary = "小说分类列表查询接口")
     @GetMapping("category/list")
@@ -97,6 +98,7 @@ public class BookController {
 
     /**
      * 小说内容相关信息查询接口
+     * zq: 某个小说的第几章第几章，就是实际的文本内容
      */
     @Operation(summary = "小说内容相关信息查询接口")
     @GetMapping("content/{chapterId}")
@@ -107,6 +109,7 @@ public class BookController {
 
     /**
      * 获取上一章节ID接口
+     * zq: 前端页面显示上一章流程: 调用这个接口获得上一章节id，在利用/content 接口获取具体内容进行展示
      */
     @Operation(summary = "获取上一章节ID接口")
     @GetMapping("pre_chapter_id/{chapterId}")
@@ -117,6 +120,7 @@ public class BookController {
 
     /**
      * 获取下一章节ID接口
+     * zq: 小说下一章节显示流程: 与获取上一章节ID接口类似
      */
     @Operation(summary = "获取下一章节ID接口")
     @GetMapping("next_chapter_id/{chapterId}")
@@ -127,6 +131,7 @@ public class BookController {
 
     /**
      * 小说点击榜查询接口
+     * zq: 对应前端页面排行榜
      */
     @Operation(summary = "小说点击榜查询接口")
     @GetMapping("visit_rank")
@@ -136,6 +141,7 @@ public class BookController {
 
     /**
      * 小说新书榜查询接口
+     * zq: 对应排行榜下侧的新书榜
      */
     @Operation(summary = "小说新书榜查询接口")
     @GetMapping("newest_rank")
@@ -145,6 +151,7 @@ public class BookController {
 
     /**
      * 小说更新榜查询接口
+     * zq：对应排行榜下侧的更新榜
      */
     @Operation(summary = "小说更新榜查询接口")
     @GetMapping("update_rank")
@@ -154,6 +161,7 @@ public class BookController {
 
     /**
      * 小说最新评论查询接口
+     * zq: 点击某本具体小说之后，前端会自动发送这个请求
      */
     @Operation(summary = "小说最新评论查询接口")
     @GetMapping("comment/newest_list")

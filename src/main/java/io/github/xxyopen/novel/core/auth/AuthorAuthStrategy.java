@@ -30,6 +30,7 @@ public class AuthorAuthStrategy implements AuthStrategy {
 
     /**
      * 不需要进行作家权限认证的 URI
+     * zq:不需要进行认证的接口
      */
     private static final List<String> EXCLUDE_URI = List.of(
         ApiRouterConsts.API_AUTHOR_URL_PREFIX + "/register",

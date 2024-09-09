@@ -58,6 +58,7 @@ public class JwtUtils {
      */
     public Long parseToken(String token, String systemKey) {
         Jws<Claims> claimsJws;
+        //zq: 没有异常就表示认证通过
         try {
             claimsJws = Jwts.parserBuilder()
                 .setSigningKey(Keys.hmacShaKeyFor(secret.getBytes(StandardCharsets.UTF_8)))

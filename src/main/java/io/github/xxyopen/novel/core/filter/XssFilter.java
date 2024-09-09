@@ -59,6 +59,9 @@ public class XssFilter implements Filter {
             return false;
         }
         String url = request.getServletPath();
+        if (url.startsWith("/upload/")) {
+            System.out.println("/upload");
+        }
         for (String pattern : xssProperties.excludes()) {
             Pattern p = Pattern.compile("^" + pattern);
             Matcher m = p.matcher(url);
@@ -67,9 +70,7 @@ public class XssFilter implements Filter {
             }
 
         }
-        if (url.startsWith("/upload/")) {
-            return true;
-        }
+
         return false;
     }
 
