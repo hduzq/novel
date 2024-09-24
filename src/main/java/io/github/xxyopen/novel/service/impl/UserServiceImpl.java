@@ -69,6 +69,7 @@ public class UserServiceImpl implements UserService {
 
         // 注册成功，保存用户信息
         UserInfo userInfo = new UserInfo();
+        //
         userInfo.setPassword(
             DigestUtils.md5DigestAsHex(dto.getPassword().getBytes(StandardCharsets.UTF_8)));
         userInfo.setUsername(dto.getUsername());

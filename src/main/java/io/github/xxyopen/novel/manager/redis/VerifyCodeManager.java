@@ -36,6 +36,7 @@ public class VerifyCodeManager {
 
     /**
      * 校验图形验证码
+     * zq：RedisTemplate的get方法读取redis数据
      */
     public boolean imgVerifyCodeOk(String sessionId, String verifyCode) {
         return Objects.equals(stringRedisTemplate.opsForValue()
@@ -44,6 +45,7 @@ public class VerifyCodeManager {
 
     /**
      * 从 Redis 中删除验证码
+     * zq:也是从redis中读取代码
      */
     public void removeImgVerifyCode(String sessionId) {
         stringRedisTemplate.delete(CacheConsts.IMG_VERIFY_CODE_CACHE_KEY + sessionId);

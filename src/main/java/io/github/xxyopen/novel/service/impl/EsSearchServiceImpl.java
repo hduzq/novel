@@ -38,7 +38,8 @@ import java.util.Objects;
  */
 @ConditionalOnProperty(prefix = "spring.elasticsearch", name = "enabled", havingValue = "true")
 @Service
-@RequiredArgsConstructor(onConstructor_ = {@Lazy})
+@RequiredArgsConstructor
+//@RequiredArgsConstructor(onConstructor_ = {@Lazy})
 @Slf4j
 public class EsSearchServiceImpl implements SearchService {
 
@@ -50,6 +51,7 @@ public class EsSearchServiceImpl implements SearchService {
 
         SearchResponse<EsBookDto> response = esClient.search(s -> {
 
+                //查询BookIndex.INDEX_NAME索引，需要首先在ES中创建book索引
                 SearchRequest.Builder searchBuilder = s.index(EsConsts.BookIndex.INDEX_NAME);
                 // 构建检索条件
                 buildSearchCondition(condition, searchBuilder);

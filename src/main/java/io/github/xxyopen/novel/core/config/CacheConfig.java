@@ -57,18 +57,20 @@ public class CacheConfig {
      */
     @Bean
     public CacheManager redisCacheManager(RedisConnectionFactory connectionFactory) {
+        // 负责与redis进行低级别的读写操作；nonLocking考试不会加锁提高性能
         RedisCacheWriter redisCacheWriter = RedisCacheWriter.nonLockingRedisCacheWriter(
             connectionFactory);
-
+        // 禁用null缓存，并为所有缓存增加‘Cache::Novel::’前缀（全局）
         RedisCacheConfiguration defaultCacheConfig = RedisCacheConfiguration.defaultCacheConfig()
             .disableCachingNullValues().prefixCacheNameWith(CacheConsts.REDIS_CACHE_PREFIX);
 
         Map<String, RedisCacheConfiguration> cacheMap = new LinkedHashMap<>(
             CacheConsts.CacheEnum.values().length);
-        // 类型推断 var 非常适合 for 循环，JDK 10 引入，JDK 11 改进
+        // 通过这个for循环填充cacheMap，为每个name配置不同的redis属性
         for (var c : CacheConsts.CacheEnum.values()) {
             if (c.isRemote()) {
                 if (c.getTtl() > 0) {
+                    //这个 RedisCacheConfiguration 包含了诸如缓存的前缀、TTL（缓存的存活时间）等配置。
                     cacheMap.put(c.getName(),
                         RedisCacheConfiguration.defaultCacheConfig().disableCachingNullValues()
                             .prefixCacheNameWith(CacheConsts.REDIS_CACHE_PREFIX)
